@@ -1,0 +1,13 @@
+<nav class='navbar navbar-inverse'>
+  <div class='container-fluid'>
+    <ul class='nav navbar-nav'>
+      <li><a routerLink='books'>Livres</a></li>
+    </ul>
+    <ul class='nav navbar-nav navbar-right'>
+      <li *ngIf="!isAuth"><a routerLink='auth/sign-up'><span class="glyphicon glyphicon-user"></span> Créer un compte</a></li>
+      <li *ngIf="!isAuth"><a routerLink='auth/sign-in'><span class="glyphicon glyphicon-log-in"></span> Se connecter</a></li>
+      <li *ngIf="isAuth"><a (click)="onSignOut()"><span class="glyphicon glyphicon-log-in"></span> Se déconnecter</a></li>
+    </ul>
+    <p class="navbar-text navbar-right" *ngIf="emailUserConnecte" style="cursor: pointer;">Bonjour {{ emailUserConnecte }}</p>
+  </div>
+</nav>

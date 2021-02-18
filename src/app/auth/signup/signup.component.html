@@ -1,0 +1,24 @@
+<!-- méthode réactive étape 4.5 création du template -->
+<div class='row'>
+  <div class='col-sm-8 col-sm-offset-2'>
+    <h2>Nouvel utilisateur :</h2>
+    <div class="alert alert-danger" *ngIf="errorMessage">
+      <p>{{ errorMessage }}</p>
+    </div>
+    <!-- formGroup en binding property vers le formgroup dans le ts -->
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+      <div class='form-group'>
+        <label for='email'>E-mail</label>
+        <!-- formControlName doit avoir le même nom que défini dans le ts -->
+        <input type='text' name='email' id='email' class="form-control" formControlName="email" />
+      </div>
+      <div class='form-group'>
+        <label for='password'>Mot de passe</label>
+        <!-- formControlName doit avoir le même nom que défini dans le ts -->
+        <input type='password' name='password' id='password' class="form-control" formControlName="password" />
+      </div>
+      <!-- disabled bindé sur la propriété invalid du formulaire qui sera à true si l'un des validateurs remonte une erreur -->
+      <button class='btn btn-primary' type="submit" [disabled]="signUpForm.invalid">Créer</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<!-- méthode réactive étape 4.5 création du template -->
+<div class='row'>
+  <div class='col-sm-8 col-sm-offset-2'>
+    <h2>Nouveau livre :</h2>
+    <div class="alert alert-danger" *ngIf="errorMessage">
+      <p>{{ errorMessage }}</p>
+    </div>
+    <!-- formGroup en binding property vers le formgroup dans le ts -->
+    <form [formGroup]="bookForm" (ngSubmit)="onSaveBook()">
+      <div class='form-group'>
+        <label for='title'>Titre</label>
+        <!-- formControlName doit avoir le même nom que défini dans le ts -->
+        <input type='text' name='title' id='title' class="form-control" formControlName="title" />
+      </div>
+      <div class='form-group'>
+        <label for='author'>Auteur</label>
+        <!-- formControlName doit avoir le même nom que défini dans le ts -->
+        <input type='text' name='author' id='author' class="form-control" formControlName="author" />
+      </div>
+      <div class='form-group'>
+        <h4 >Ajouter une photo</h4>
+        <input type='file' (change)="detectFiles($event)" class="form-control" accept="image/*" />
+        <p class='text-success' *ngIf="fileUploaded">Fichier chargé</p>
+      </div>
+      <!-- disabled bindé sur la propriété invalid du formulaire qui sera à true si l'un des validateurs remonte une erreur -->
+      <button class='btn btn-primary' type="submit" [disabled]="bookForm.invalid || fileIsUploading">Enregistrer</button>
+    </form>
+  </div>
+</div>
